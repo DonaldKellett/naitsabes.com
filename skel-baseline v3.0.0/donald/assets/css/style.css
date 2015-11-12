@@ -1,0 +1,21 @@
+/*
+  style.css
+  (c) Donald Leung.  All rights reserved.
+*/
+#my_icons {
+  text-align: center;
+}
+
+.client_websites {
+  text-align: center;
+}
+
+.client_websites img {
+  width: 100%;
+  height: 100%;
+}
+
+textarea {
+  resize: none;
+  height: 300px;
+}
