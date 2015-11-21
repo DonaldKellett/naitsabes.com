@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Naitsabes - Error 404</title>
+		<title>Naitsabes - 403 Forbidden</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -22,15 +22,15 @@
 				<!-- Header -->
 					<?php require "header.php"; ?>
 
-				<!-- Menu -->
-					<?php require "nav.php"; ?>
+					<!-- Menu -->
+						<?php require "nav.php"; ?>
 
 				<!-- Wrapper -->
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>404 - File or Directory Not Found</h2>
-								<p>Most Likely Reason You Are Seeing This: Invalid URL</p>
+								<h2>403 - Forbidden</h2>
+								<p>Most Likely Reason You Are Seeing This: Accessing a Directory directly that does not contain an <code style="text-transform: lowercase;">index</code> file <b>or</b> trying to access a hidden (dot) file</p>
 							</div>
 						</header>
 
@@ -61,12 +61,12 @@
 										</article>
 									</section> -->
 
-									<h3 class="major">404 - File or Directory Not Found</h3>
+									<h3 class="major">403 - Forbidden</h3>
                   <p>
-                    Are you sure you have typed in the correct URL?  Please make sure you have typed in the URL correctly and try again.
+                    Sorry, you do not have direct access to this file or directory.  Please return to the homepage and try again.
                   </p>
                   <p>
-                    If you see this page because you have clicked on a link on this website, please use the contact form below to report it to the owner of this website immediately.  Chances are that he forgot to remove an invalid link after a website file was deleted.
+                    <a href="http://naitsabes.com/" class="button">Return to Homepage</a>
                   </p>
 
 								</div>

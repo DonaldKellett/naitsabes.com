@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Naitsabes - Error 404</title>
+		<title>Naitsabes - 400 Bad Request</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -22,15 +22,15 @@
 				<!-- Header -->
 					<?php require "header.php"; ?>
 
-				<!-- Menu -->
-					<?php require "nav.php"; ?>
+					<!-- Menu -->
+						<?php require "nav.php"; ?>
 
 				<!-- Wrapper -->
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>404 - File or Directory Not Found</h2>
-								<p>Most Likely Reason You Are Seeing This: Invalid URL</p>
+								<h2>400 - Bad Request</h2>
+								<p>Most Likely Reason You Are Seeing This: The web server at <a href="http://naitsabes.com">http://naitsabes.com</a> received a request that it is unable to understand</p>
 							</div>
 						</header>
 
@@ -61,12 +61,12 @@
 										</article>
 									</section> -->
 
-									<h3 class="major">404 - File or Directory Not Found</h3>
+									<h3 class="major">400 - Bad Request</h3>
                   <p>
-                    Are you sure you have typed in the correct URL?  Please make sure you have typed in the URL correctly and try again.
+                    Sorry, the web server does not understand your request.  Please check your request for invalid characters.  That's all I know.
                   </p>
                   <p>
-                    If you see this page because you have clicked on a link on this website, please use the contact form below to report it to the owner of this website immediately.  Chances are that he forgot to remove an invalid link after a website file was deleted.
+                    If you think this error was caused by code on my side, feel free to drop me an email using the contact form below.  I would be more than happy to hear about the problem.
                   </p>
 
 								</div>

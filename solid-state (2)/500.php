@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Naitsabes - Error 404</title>
+		<title>Naitsabes - 500 Internal Server Error</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -29,8 +29,8 @@
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>404 - File or Directory Not Found</h2>
-								<p>Most Likely Reason You Are Seeing This: Invalid URL</p>
+								<h2>500 - Internal Server Error</h2>
+								<p>Most Likely Reason You Are Seeing This: There was an unknown problem with the server located at <a href="http://naitsabes.com">http://naitsabes.com</a></p>
 							</div>
 						</header>
 
@@ -61,12 +61,12 @@
 										</article>
 									</section> -->
 
-									<h3 class="major">404 - File or Directory Not Found</h3>
+									<h3 class="major">500 - Internal Server Error</h3>
                   <p>
-                    Are you sure you have typed in the correct URL?  Please make sure you have typed in the URL correctly and try again.
+                    There was a problem with the server.  That's all I know.
                   </p>
                   <p>
-                    If you see this page because you have clicked on a link on this website, please use the contact form below to report it to the owner of this website immediately.  Chances are that he forgot to remove an invalid link after a website file was deleted.
+                    If you keep seeing this page please send an email directly to <a href="mailto:dleung@connect.kellettschool.com">dleung@connect.kellettschool.com</a> to notify him of this issue.  Thank you for your cooperation.
                   </p>
 
 								</div>

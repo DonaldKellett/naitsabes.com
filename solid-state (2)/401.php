@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Naitsabes - Error 404</title>
+		<title>Naitsabes - Error 401</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -22,15 +22,15 @@
 				<!-- Header -->
 					<?php require "header.php"; ?>
 
-				<!-- Menu -->
-					<?php require "nav.php"; ?>
+					<!-- Menu -->
+						<?php require "nav.php"; ?>
 
 				<!-- Wrapper -->
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>404 - File or Directory Not Found</h2>
-								<p>Most Likely Reason You Are Seeing This: Invalid URL</p>
+								<h2>401 - Authorisation Required</h2>
+								<p>Most Likely Reason You Are Seeing This: You attempted to access a password protected area but entered the wrong password</p>
 							</div>
 						</header>
 
@@ -61,12 +61,12 @@
 										</article>
 									</section> -->
 
-									<h3 class="major">404 - File or Directory Not Found</h3>
+									<h3 class="major">401 - Authorisation Required</h3>
                   <p>
-                    Are you sure you have typed in the correct URL?  Please make sure you have typed in the URL correctly and try again.
+                    Sorry, it seems that you attempted to access a password protected area in which you do not have a password to.  If you know the password, please make sure you have entered the password correctly and try again.  That's all I know.
                   </p>
                   <p>
-                    If you see this page because you have clicked on a link on this website, please use the contact form below to report it to the owner of this website immediately.  Chances are that he forgot to remove an invalid link after a website file was deleted.
+                    If you believe this error to be my problem, feel free to fill in the contact form below to send me an email.  I will try to reply to you as soon as possible.
                   </p>
 
 								</div>
