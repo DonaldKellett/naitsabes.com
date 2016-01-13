@@ -1,0 +1,1028 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" width="1000" height="800" style="background-Color: black;">
+	<!--
+		Zombie Massacre
+		HKUST Summer Institute 2015 SISP 1305 Group 1 Project
+
+		(c) 2015 SISP 1305 Group 1.  All rights reserved.
+	-->
+	<title>Zombie Massacre</title>
+	<script>
+		<![CDATA[
+			"use strict";
+			var player;
+			var normalZombie1, normalZombie2, normalZombie3, normalZombie4, normalZombiesLeft = 4;
+			var hardZombie1, hardZombie2, hardZombie3, hardZombie4, hardZombiesLeft = 4;
+			var minionZombie1, minionZombie2;
+			var bossZombie;
+
+			function showInstructions() {
+				document.getElementById("startButton").setAttribute("onmousedown", "");
+				document.getElementById("startScreen").setAttribute("visibility", "hidden");
+				document.getElementById("instructions").setAttribute("visibility", "visible");
+				document.getElementById("buttonClick").play();
+			}
+			function init() {
+				document.getElementById("proceed").setAttribute("onmousedown", "");
+				document.getElementById("instructions").setAttribute("visibility", "hidden");
+				document.getElementById("gameScene").setAttribute("visibility", "visible");
+				document.getElementById("buttonClick").play();
+				startGame();
+			}
+			function startGame() {
+				player = {
+					x: 500,
+					y: 400,
+					r: 50,
+					svgEquiv: document.getElementById("player"),
+					move: function(dir) {
+						switch (dir) {
+							case "left":
+							player.x -= 15;
+							break;
+							case "right":
+							player.x += 15;
+							break;
+							case "up":
+							player.y -= 15;
+							break;
+							case "down":
+							player.y += 15;
+							break;
+							default:
+							alert("ERROR!  THIS DIRECTION DOES NOT EXIST!  CHECK YOUR CODE!");
+						}
+						player.svgEquiv.setAttribute("transform", "translate("+player.x+" "+player.y+")");
+					},
+					init: function() {
+						player.svgEquiv.setAttribute("transform", "translate("+player.x+" "+player.y+")");
+						player.svgEquiv.setAttribute("visibility", "visible");
+					},
+					preventEscape: function() {
+						if (player.x < 0) {
+							player.x = 0;
+						} else if (player.y < 0) {
+							player.y = 0;
+						} else if (player.x > 1000) {
+							player.x = 1000;
+						} else if (player.y > 800) {
+							player.y = 800;
+						} else {
+							void(0);
+						}
+						player.svgEquiv.setAttribute("transform", "translate("+player.x+" "+player.y+")");
+					}
+				};
+				player.init();
+				document.onkeydown = function(event) {
+					/*
+						Key Codes
+						---------
+						W = 87
+						A = 65
+						S = 83
+						D = 68
+					*/
+					switch (event.keyCode) {
+						case 87:
+						player.move("up");
+						break;
+						case 65:
+						player.move("left");
+						break;
+						case 83:
+						player.move("down");
+						break;
+						case 68:
+						player.move("right");
+						break;
+					}
+					player.preventEscape();
+				}
+				document.onmousedown = function() {
+					document.getElementById("gunshotSFX").play();
+				}
+				function Zombie(svgEquiv, x, y, r, health, stepMoves) {
+					this.svgEquiv = svgEquiv;
+					this.x = x;
+					this.y = y;
+					this.r = r;
+					this.health = health;
+					this.stepMoves = stepMoves;
+					this.currentStepCount = 0;
+					this.stepX = 0;
+					this.stepY = 0;
+					this.stepTimer = function() {
+						void(0);
+					}
+					this.startPos = function() {
+						this.svgEquiv.setAttribute("transform", "translate("+this.x+" "+this.y+")");
+						this.svgEquiv.setAttribute("visibility", "visible");
+					}
+					this.detectCollisionWithPlayer = function() {
+						if ((this.x - player.x) * (this.x - player.x) + (this.y - player.y) * (this.y - player.y) <= (this.r + player.r) * (this.r + player.r)) {
+							// Hide Zombies
+							if (normalZombie1 !== undefined) {
+								normalZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie2 !== undefined) {
+								normalZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie3 !== undefined) {
+								normalZombie3.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie4 !== undefined) {
+								normalZombie4.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (hardZombie1 !== undefined) {
+								hardZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (hardZombie2 !== undefined) {
+								hardZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (hardZombie3 !== undefined) {
+								hardZombie3.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (hardZombie4 !== undefined) {
+								hardZombie4.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (bossZombie !== undefined) {
+								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (minionZombie2 !== undefined) {
+								minionZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Hide Health Bar of Boss
+							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
+							// Hide Player (of course :p)
+							if (player !== undefined) {
+								player.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Disable all onmousedown events
+							if (normalZombie1 !== undefined) {
+								normalZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie2 !== undefined) {
+								normalZombie2.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie3 !== undefined) {
+								normalZombie3.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie4 !== undefined) {
+								normalZombie4.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie1 !== undefined) {
+								hardZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie2 !== undefined) {
+								hardZombie2.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie3 !== undefined) {
+								hardZombie3.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie4 !== undefined) {
+								hardZombie4.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (bossZombie !== undefined) {
+								bossZombie.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (minionZombie2 !== undefined) {
+								minionZombie2.svgEquiv.setAttribute("onmousedown", "");
+							}
+							// Disable Keyboard Controls
+							document.onkeydown = function(event) {
+								void(0);
+							}
+							// Clear all intervals
+							if (normalZombie1 !== undefined) {
+								clearInterval(normalZombie1.stepTimer);
+							}
+							if (normalZombie2 !== undefined) {
+								clearInterval(normalZombie2.stepTimer);
+							}
+							if (normalZombie3 !== undefined) {
+								clearInterval(normalZombie3.stepTimer);
+							}
+							if (normalZombie4 !== undefined) {
+								clearInterval(normalZombie4.stepTimer);
+							}
+							if (hardZombie1 !== undefined) {
+								clearInterval(hardZombie1.stepTimer);
+							}
+							if (hardZombie2 !== undefined) {
+								clearInterval(hardZombie2.stepTimer);
+							}
+							if (hardZombie3 !== undefined) {
+								clearInterval(hardZombie3.stepTimer);
+							}
+							if (hardZombie4 !== undefined) {
+								clearInterval(hardZombie4.stepTimer);
+							}
+							if (bossZombie !== undefined) {
+								clearInterval(bossZombie.stepTimer);
+							}
+							if (minionZombie1 !== undefined) {
+								clearInterval(minionZombie1.stepTimer);
+							}
+							if (minionZombie2 !== undefined) {
+								clearInterval(minionZombie2.stepTimer);
+							}
+							// Undefine Everything
+							normalZombie1 = undefined;
+							normalZombie2 = undefined;
+							normalZombie3 = undefined;
+							normalZombie4 = undefined;
+							hardZombie1 = undefined;
+							hardZombie2 = undefined;
+							hardZombie3 = undefined;
+							hardZombie4 = undefined;
+							bossZombie = undefined;
+							minionZombie1 = undefined;
+							minionZombie2 = undefined;
+							player = undefined;
+							// Hide Game Screen and show Game Over Screen
+							document.getElementById("gameScene").setAttribute("visibility", "hidden");
+							document.getElementById("gameOver").setAttribute("visibility", "visible");
+							// Player loses
+							document.getElementById("gameOverText").setAttribute("visibility", "visible");
+							// Enable Restart Button
+							document.getElementById("gameOverRestart").setAttribute("onmousedown", "location.reload()");
+							// Play agonising scream :p
+							document.getElementById("playerScream").play();
+						}
+					}
+				}
+
+				normalZombie1 = new Zombie(document.getElementById("normalZombie1"), 0, 400, 50, 1, 300);
+				normalZombie1.startPos();
+				normalZombie1.targetPlayer = function() {
+					normalZombie1.stepX = (player.x - normalZombie1.x) / normalZombie1.stepMoves;
+					normalZombie1.stepY = (player.y - normalZombie1.y) / normalZombie1.stepMoves;
+					normalZombie1.currentStepCount = 0;
+					normalZombie1.stepTimer = setTimeout(function() {
+						normalZombie1.move();
+					}, 10);
+				}
+				normalZombie1.move = function() {
+					normalZombie1.x += normalZombie1.stepX;
+					normalZombie1.y += normalZombie1.stepY;
+					normalZombie1.svgEquiv.setAttribute("transform", "translate("+normalZombie1.x+" "+normalZombie1.y+")");
+					normalZombie1.currentStepCount ++;
+					if (normalZombie1.currentStepCount < normalZombie1.stepMoves) {
+						normalZombie1.stepTimer = setTimeout(function() {
+							normalZombie1.move();
+						}, 10);
+					} else {
+						normalZombie1.stepTimer = setTimeout(function() {
+							normalZombie1.targetPlayer();
+						}, 10);
+					}
+					normalZombie1.detectCollisionWithPlayer();
+				}
+				normalZombie1.loseHealth = function() {
+					normalZombie1.health --;
+					document.getElementById("gunshotSFX").play();
+					if (normalZombie1.health <= 0) {
+						// Zombie dies.  Disable Zombie
+						normalZombie1.svgEquiv.setAttribute("visibility", "hidden");
+						normalZombie1.svgEquiv.setAttribute("onmousedown", "");
+						clearInterval(normalZombie1.stepTimer);
+						normalZombie1 = undefined;
+						normalZombiesLeft --;
+						checkNormalZombiesNum();
+					}
+				}
+
+				normalZombie2 = new Zombie(document.getElementById("normalZombie2"), 500, 0, 50, 1, 300);
+				normalZombie2.startPos();
+				normalZombie2.targetPlayer = function() {
+					normalZombie2.stepX = (player.x - normalZombie2.x) / normalZombie2.stepMoves;
+					normalZombie2.stepY = (player.y - normalZombie2.y) / normalZombie2.stepMoves;
+					normalZombie2.currentStepCount = 0;
+					normalZombie2.stepTimer = setTimeout(function() {
+						normalZombie2.move();
+					}, 10);
+				}
+				normalZombie2.move = function() {
+					normalZombie2.x += normalZombie2.stepX;
+					normalZombie2.y += normalZombie2.stepY;
+					normalZombie2.svgEquiv.setAttribute("transform", "translate("+normalZombie2.x+" "+normalZombie2.y+")");
+					normalZombie2.currentStepCount ++;
+					if (normalZombie2.currentStepCount < normalZombie2.stepMoves) {
+						normalZombie2.stepTimer = setTimeout(function() {
+							normalZombie2.move();
+						}, 10);
+					} else {
+						normalZombie2.stepTimer = setTimeout(function() {
+							normalZombie2.targetPlayer();
+						}, 10);
+					}
+					normalZombie2.detectCollisionWithPlayer();
+				}
+				normalZombie2.loseHealth = function() {
+					normalZombie2.health --;
+					document.getElementById("gunshotSFX").play();
+					if (normalZombie2.health <= 0) {
+						// Zombie dies.  Disable Zombie
+						normalZombie2.svgEquiv.setAttribute("visibility", "hidden");
+						normalZombie2.svgEquiv.setAttribute("onmousedown", "");
+						clearInterval(normalZombie2.stepTimer);
+						normalZombie2 = undefined;
+						normalZombiesLeft --;
+						checkNormalZombiesNum();
+					}
+				}
+
+				normalZombie3 = new Zombie(document.getElementById("normalZombie3"), 1000, 400, 50, 1, 300);
+				normalZombie3.startPos();
+				normalZombie3.targetPlayer = function() {
+					normalZombie3.stepX = (player.x - normalZombie3.x) / normalZombie3.stepMoves;
+					normalZombie3.stepY = (player.y - normalZombie3.y) / normalZombie3.stepMoves;
+					normalZombie3.currentStepCount = 0;
+					normalZombie3.stepTimer = setTimeout(function() {
+						normalZombie3.move();
+					}, 10);
+				}
+				normalZombie3.move = function() {
+					normalZombie3.x += normalZombie3.stepX;
+					normalZombie3.y += normalZombie3.stepY;
+					normalZombie3.svgEquiv.setAttribute("transform", "translate("+normalZombie3.x+" "+normalZombie3.y+")");
+					normalZombie3.currentStepCount ++;
+					if (normalZombie3.currentStepCount < normalZombie3.stepMoves) {
+						normalZombie3.stepTimer = setTimeout(function() {
+							normalZombie3.move();
+						}, 10);
+					} else {
+						normalZombie3.stepTimer = setTimeout(function() {
+							normalZombie3.targetPlayer();
+						}, 10);
+					}
+					normalZombie3.detectCollisionWithPlayer();
+				}
+				normalZombie3.loseHealth = function() {
+					normalZombie3.health --;
+					document.getElementById("gunshotSFX").play();
+					if (normalZombie3.health <= 0) {
+						// Zombie dies.  Disable Zombie
+						normalZombie3.svgEquiv.setAttribute("visibility", "hidden");
+						normalZombie3.svgEquiv.setAttribute("onmousedown", "");
+						clearInterval(normalZombie3.stepTimer);
+						normalZombie3 = undefined;
+						normalZombiesLeft --;
+						checkNormalZombiesNum();
+					}
+				}
+
+				normalZombie4 = new Zombie(document.getElementById("normalZombie4"), 500, 800, 50, 1, 300);
+				normalZombie4.startPos();
+				normalZombie4.targetPlayer = function() {
+					normalZombie4.stepX = (player.x - normalZombie4.x) / normalZombie4.stepMoves;
+					normalZombie4.stepY = (player.y - normalZombie4.y) / normalZombie4.stepMoves;
+					normalZombie4.currentStepCount = 0;
+					normalZombie4.stepTimer = setTimeout(function() {
+						normalZombie4.move();
+					}, 10);
+				}
+				normalZombie4.move = function() {
+					normalZombie4.x += normalZombie4.stepX;
+					normalZombie4.y += normalZombie4.stepY;
+					normalZombie4.svgEquiv.setAttribute("transform", "translate("+normalZombie4.x+" "+normalZombie4.y+")");
+					normalZombie4.currentStepCount ++;
+					if (normalZombie4.currentStepCount < normalZombie4.stepMoves) {
+						normalZombie4.stepTimer = setTimeout(function() {
+							normalZombie4.move();
+						}, 10);
+					} else {
+						normalZombie4.stepTimer = setTimeout(function() {
+							normalZombie4.targetPlayer();
+						}, 10);
+					}
+					normalZombie4.detectCollisionWithPlayer();
+				}
+				normalZombie4.loseHealth = function() {
+					normalZombie4.health --;
+					document.getElementById("gunshotSFX").play();
+					if (normalZombie4.health <= 0) {
+						// Zombie dies.  Disable Zombie
+						normalZombie4.svgEquiv.setAttribute("visibility", "hidden");
+						normalZombie4.svgEquiv.setAttribute("onmousedown", "");
+						clearInterval(normalZombie4.stepTimer);
+						normalZombie4 = undefined;
+						normalZombiesLeft --;
+						checkNormalZombiesNum();
+					}
+				}
+
+				function checkNormalZombiesNum() {
+					if (normalZombiesLeft <= 0) {
+						releaseHardZombies();
+					}
+				}
+				function releaseHardZombies() {
+					hardZombie1 = new Zombie(document.getElementById("hardZombie1"), 0, 0, 50, 3, 250);
+					hardZombie1.startPos();
+					hardZombie1.targetPlayer = function() {
+						hardZombie1.stepX = (player.x - hardZombie1.x) / hardZombie1.stepMoves;
+						hardZombie1.stepY = (player.y - hardZombie1.y) / hardZombie1.stepMoves;
+						hardZombie1.currentStepCount = 0;
+						hardZombie1.stepTimer = setTimeout(function() {
+							hardZombie1.move();
+						}, 10);
+					}
+					hardZombie1.move = function() {
+						hardZombie1.x += hardZombie1.stepX;
+						hardZombie1.y += hardZombie1.stepY;
+						hardZombie1.svgEquiv.setAttribute("transform", "translate("+hardZombie1.x+" "+hardZombie1.y+")");
+						hardZombie1.currentStepCount ++;
+						if (hardZombie1.currentStepCount < hardZombie1.stepMoves) {
+							hardZombie1.stepTimer = setTimeout(function() {
+								hardZombie1.move();
+							}, 10);
+						} else {
+							hardZombie1.stepTimer = setTimeout(function() {
+								hardZombie1.targetPlayer();
+							}, 10);
+						}
+						hardZombie1.detectCollisionWithPlayer();
+					}
+					hardZombie1.loseHealth = function() {
+						hardZombie1.health --;
+						document.getElementById("gunshotSFX").play();
+						if (hardZombie1.health <= 0) {
+							// Zombie dies.  Disable Zombie
+							hardZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							hardZombie1.svgEquiv.setAttribute("onmousedown", "");
+							clearInterval(hardZombie1.stepTimer);
+							hardZombie1 = undefined;
+							hardZombiesLeft --;
+							checkHardZombiesNum();
+						}
+					}
+
+					hardZombie2 = new Zombie(document.getElementById("hardZombie2"), 1000, 0, 50, 3, 250);
+					hardZombie2.startPos();
+					hardZombie2.targetPlayer = function() {
+						hardZombie2.stepX = (player.x - hardZombie2.x) / hardZombie2.stepMoves;
+						hardZombie2.stepY = (player.y - hardZombie2.y) / hardZombie2.stepMoves;
+						hardZombie2.currentStepCount = 0;
+						hardZombie2.stepTimer = setTimeout(function() {
+							hardZombie2.move();
+						}, 10);
+					}
+					hardZombie2.move = function() {
+						hardZombie2.x += hardZombie2.stepX;
+						hardZombie2.y += hardZombie2.stepY;
+						hardZombie2.svgEquiv.setAttribute("transform", "translate("+hardZombie2.x+" "+hardZombie2.y+")");
+						hardZombie2.currentStepCount ++;
+						if (hardZombie2.currentStepCount < hardZombie2.stepMoves) {
+							hardZombie2.stepTimer = setTimeout(function() {
+								hardZombie2.move();
+							}, 10);
+						} else {
+							hardZombie2.stepTimer = setTimeout(function() {
+								hardZombie2.targetPlayer();
+							}, 10);
+						}
+						hardZombie2.detectCollisionWithPlayer();
+					}
+					hardZombie2.loseHealth = function() {
+						hardZombie2.health --;
+						document.getElementById("gunshotSFX").play();
+						if (hardZombie2.health <= 0) {
+							// Zombie dies.  Disable Zombie
+							hardZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							hardZombie2.svgEquiv.setAttribute("onmousedown", "");
+							clearInterval(hardZombie2.stepTimer);
+							hardZombie2 = undefined;
+							hardZombiesLeft --;
+							checkHardZombiesNum();
+						}
+					}
+
+					hardZombie3 = new Zombie(document.getElementById("hardZombie3"), 0, 800, 50, 3, 250);
+					hardZombie3.startPos();
+					hardZombie3.targetPlayer = function() {
+						hardZombie3.stepX = (player.x - hardZombie3.x) / hardZombie3.stepMoves;
+						hardZombie3.stepY = (player.y - hardZombie3.y) / hardZombie3.stepMoves;
+						hardZombie3.currentStepCount = 0;
+						hardZombie3.stepTimer = setTimeout(function() {
+							hardZombie3.move();
+						}, 10);
+					}
+					hardZombie3.move = function() {
+						hardZombie3.x += hardZombie3.stepX;
+						hardZombie3.y += hardZombie3.stepY;
+						hardZombie3.svgEquiv.setAttribute("transform", "translate("+hardZombie3.x+" "+hardZombie3.y+")");
+						hardZombie3.currentStepCount ++;
+						if (hardZombie3.currentStepCount < hardZombie3.stepMoves) {
+							hardZombie3.stepTimer = setTimeout(function() {
+								hardZombie3.move();
+							}, 10);
+						} else {
+							hardZombie3.stepTimer = setTimeout(function() {
+								hardZombie3.targetPlayer();
+							}, 10);
+						}
+						hardZombie3.detectCollisionWithPlayer();
+					}
+					hardZombie3.loseHealth = function() {
+						hardZombie3.health --;
+						document.getElementById("gunshotSFX").play();
+						if (hardZombie3.health <= 0) {
+							// Zombie dies.  Disable Zombie
+							hardZombie3.svgEquiv.setAttribute("visibility", "hidden");
+							hardZombie3.svgEquiv.setAttribute("onmousedown", "");
+							clearInterval(hardZombie3.stepTimer);
+							hardZombie3 = undefined;
+							hardZombiesLeft --;
+							checkHardZombiesNum();
+						}
+					}
+
+					hardZombie4 = new Zombie(document.getElementById("hardZombie4"), 1000, 800, 50, 3, 250);
+					hardZombie4.startPos();
+					hardZombie4.targetPlayer = function() {
+						hardZombie4.stepX = (player.x - hardZombie4.x) / hardZombie4.stepMoves;
+						hardZombie4.stepY = (player.y - hardZombie4.y) / hardZombie4.stepMoves;
+						hardZombie4.currentStepCount = 0;
+						hardZombie4.stepTimer = setTimeout(function() {
+							hardZombie4.move();
+						}, 10);
+					}
+					hardZombie4.move = function() {
+						hardZombie4.x += hardZombie4.stepX;
+						hardZombie4.y += hardZombie4.stepY;
+						hardZombie4.svgEquiv.setAttribute("transform", "translate("+hardZombie4.x+" "+hardZombie4.y+")");
+						hardZombie4.currentStepCount ++;
+						if (hardZombie4.currentStepCount < hardZombie4.stepMoves) {
+							hardZombie4.stepTimer = setTimeout(function() {
+								hardZombie4.move();
+							}, 10);
+						} else {
+							hardZombie4.stepTimer = setTimeout(function() {
+								hardZombie4.targetPlayer();
+							}, 10);
+						}
+						hardZombie4.detectCollisionWithPlayer();
+					}
+					hardZombie4.loseHealth = function() {
+						hardZombie4.health --;
+						document.getElementById("gunshotSFX").play();
+						if (hardZombie4.health <= 0) {
+							// Zombie dies.  Disable Zombie
+							hardZombie4.svgEquiv.setAttribute("visibility", "hidden");
+							hardZombie4.svgEquiv.setAttribute("onmousedown", "");
+							clearInterval(hardZombie4.stepTimer);
+							hardZombie4 = undefined;
+							hardZombiesLeft --;
+							checkHardZombiesNum();
+						}
+					}
+
+					function checkHardZombiesNum() {
+						if (hardZombiesLeft <= 0) {
+							releaseBoss();
+						}
+					}
+					function releaseBoss() {
+						bossZombie = new Zombie(document.getElementById("bossZombie"), 500, -200, 200, 60, 500);
+						bossZombie.startPos();
+						bossZombie.targetPlayer = function() {
+							bossZombie.stepX = (player.x - bossZombie.x) / bossZombie.stepMoves;
+							bossZombie.stepY = (player.y - bossZombie.y) / bossZombie.stepMoves;
+							bossZombie.currentStepCount = 0;
+							bossZombie.stepTimer = setTimeout(function() {
+								bossZombie.move();
+							}, 10);
+						}
+						bossZombie.move = function() {
+							bossZombie.x += bossZombie.stepX;
+							bossZombie.y += bossZombie.stepY;
+							bossZombie.svgEquiv.setAttribute("transform", "translate("+bossZombie.x+" "+bossZombie.y+")");
+							bossZombie.currentStepCount ++;
+							if (bossZombie.currentStepCount < bossZombie.stepMoves) {
+								bossZombie.stepTimer = setTimeout(function() {
+									bossZombie.move();
+								}, 10);
+							} else {
+								bossZombie.stepTimer = setTimeout(function() {
+									bossZombie.targetPlayer();
+								}, 10);
+							}
+							bossZombie.detectCollisionWithPlayer();
+						}
+						bossZombie.loseHealth = function() {
+							bossZombie.health --;
+							document.getElementById("gunshotSFX").play();
+							document.getElementById("actualBossHealth").setAttribute("width", 10 * bossZombie.health);
+							if (bossZombie.health <= 0) {
+								// Zombie dies.  Disable Zombie
+								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
+								bossZombie.svgEquiv.setAttribute("onmousedown", "");
+								clearInterval(bossZombie.stepTimer);
+								bossZombie = undefined;
+								winGame();
+							}
+						}
+
+						function winGame() {
+							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
+							// Hide Minions
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (minionZombie2 !== undefined) {
+								minionZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Hide Player
+							if (player !== undefined) {
+								player.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Disable Minion onmousedown events
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (minionZombie2 !== undefined) {
+								minionZombie2.svgEquiv.setAttribute("onmousedown", "");
+							}
+							// Disable Keyboard Controls
+							document.onkeydown = function(event) {
+								void(0);
+							}
+							// Clear Minion Intervals :p
+							if (minionZombie1 !== undefined) {
+								clearInterval(minionZombie1.stepTimer);
+							}
+							if (minionZombie2 !== undefined) {
+								clearInterval(minionZombie2.stepTimer);
+							}
+							// Undefine Minions and Player
+							minionZombie1 = undefined;
+							minionZombie2 = undefined;
+							player = undefined;
+							// Hide Game Screen and show Winning Screen
+							document.getElementById("gameScene").setAttribute("visibility", "hidden");
+							document.getElementById("gameOver").setAttribute("visibility", "visible");
+							// Player wins
+							document.getElementById("gameOverWinText").setAttribute("visibility", "visible");
+							// Enable Restart Button
+							document.getElementById("gameOverRestart").setAttribute("onmousedown", "location.reload()");
+						}
+
+						bossZombie.svgEquiv.setAttribute("onmousedown", "bossZombie.loseHealth()");
+						bossZombie.targetPlayer();
+						document.getElementById("bossHealthBar").setAttribute("visibility", "visible");
+						bossZombie.summonMinions = function() {
+							// This is the function where the boss summons his Minions :p
+							minionZombie1 = new Zombie(document.getElementById("minionZombie1"), 1000 * Math.random(), 0, 50, 1, 250);
+							minionZombie1.startPos();
+							minionZombie1.targetPlayer = function() {
+								minionZombie1.stepX = (player.x - minionZombie1.x) / minionZombie1.stepMoves;
+								minionZombie1.stepY = (player.y - minionZombie1.y) / minionZombie1.stepMoves;
+								minionZombie1.currentStepCount = 0;
+								minionZombie1.stepTimer = setTimeout(function() {
+									minionZombie1.move();
+								}, 10);
+							}
+							minionZombie1.move = function() {
+								minionZombie1.x += minionZombie1.stepX;
+								minionZombie1.y += minionZombie1.stepY;
+								minionZombie1.svgEquiv.setAttribute("transform", "translate("+minionZombie1.x+" "+minionZombie1.y+")");
+								minionZombie1.currentStepCount ++;
+								if (minionZombie1.currentStepCount < minionZombie1.stepMoves) {
+									minionZombie1.stepTimer = setTimeout(function() {
+										minionZombie1.move();
+									}, 10);
+								} else {
+									minionZombie1.stepTimer = setTimeout(function() {
+										minionZombie1.targetPlayer();
+									}, 10);
+								}
+								minionZombie1.detectCollisionWithPlayer();
+							}
+							minionZombie1.loseHealth = function() {
+								minionZombie1.health --;
+								document.getElementById("gunshotSFX").play();
+								if (minionZombie1.health <= 0) {
+									// Minion Zombie Respawns
+									minionZombie1.health = 1;
+									minionZombie1.x = 1000 * Math.random();
+									minionZombie1.y = 0;
+									minionZombie1.startPos();
+									clearInterval(minionZombie1.stepTimer);
+									minionZombie1.targetPlayer();
+								}
+							}
+
+							minionZombie2 = new Zombie(document.getElementById("minionZombie2"), 1000 * Math.random(), 800, 50, 1, 250);
+							minionZombie2.startPos();
+							minionZombie2.targetPlayer = function() {
+								minionZombie2.stepX = (player.x - minionZombie2.x) / minionZombie2.stepMoves;
+								minionZombie2.stepY = (player.y - minionZombie2.y) / minionZombie2.stepMoves;
+								minionZombie2.currentStepCount = 0;
+								minionZombie2.stepTimer = setTimeout(function() {
+									minionZombie2.move();
+								}, 10);
+							}
+							minionZombie2.move = function() {
+								minionZombie2.x += minionZombie2.stepX;
+								minionZombie2.y += minionZombie2.stepY;
+								minionZombie2.svgEquiv.setAttribute("transform", "translate("+minionZombie2.x+" "+minionZombie2.y+")");
+								minionZombie2.currentStepCount ++;
+								if (minionZombie2.currentStepCount < minionZombie2.stepMoves) {
+									minionZombie2.stepTimer = setTimeout(function() {
+										minionZombie2.move();
+									}, 10);
+								} else {
+									minionZombie2.stepTimer = setTimeout(function() {
+										minionZombie2.targetPlayer();
+									}, 10);
+								}
+								minionZombie2.detectCollisionWithPlayer();
+							}
+							minionZombie2.loseHealth = function() {
+								minionZombie2.health --;
+								document.getElementById("gunshotSFX").play();
+								if (minionZombie2.health <= 0) {
+									// Minion Zombie Respawns
+									minionZombie2.health = 1;
+									minionZombie2.x = 1000 * Math.random();
+									minionZombie2.y = 800;
+									minionZombie2.startPos();
+									clearInterval(minionZombie2.stepTimer);
+									minionZombie2.targetPlayer();
+								}
+							}
+
+							minionZombie1.svgEquiv.setAttribute("onmousedown", "minionZombie1.loseHealth()");
+							minionZombie1.targetPlayer();
+
+							minionZombie2.svgEquiv.setAttribute("onmousedown", "minionZombie2.loseHealth()");
+							minionZombie2.targetPlayer();
+						}
+						bossZombie.summonMinions();
+					}
+
+					hardZombie1.svgEquiv.setAttribute("onmousedown", "hardZombie1.loseHealth()");
+					hardZombie1.targetPlayer();
+
+					hardZombie2.svgEquiv.setAttribute("onmousedown", "hardZombie2.loseHealth()");
+					hardZombie2.targetPlayer();
+
+					hardZombie3.svgEquiv.setAttribute("onmousedown", "hardZombie3.loseHealth()");
+					hardZombie3.targetPlayer();
+
+					hardZombie4.svgEquiv.setAttribute("onmousedown", "hardZombie4.loseHealth()");
+					hardZombie4.targetPlayer();
+				}
+
+				normalZombie1.svgEquiv.setAttribute("onmousedown", "normalZombie1.loseHealth()");
+				normalZombie1.targetPlayer();
+
+				normalZombie2.svgEquiv.setAttribute("onmousedown", "normalZombie2.loseHealth()");
+				normalZombie2.targetPlayer();
+
+				normalZombie3.svgEquiv.setAttribute("onmousedown", "normalZombie3.loseHealth()");
+				normalZombie3.targetPlayer();
+
+				normalZombie4.svgEquiv.setAttribute("onmousedown", "normalZombie4.loseHealth()");
+				normalZombie4.targetPlayer();
+			}
+		]]>
+	</script>
+	<defs>
+		<linearGradient id="buttonGrad">
+			<stop offset="0" style="stop-color: rgb(255, 154, 139);"></stop>
+			<stop offset="0.5" style="stop-color: red;"></stop>
+			<stop offset="1" style="stop-color: rgb(255, 154, 139);"></stop>
+		</linearGradient>
+	</defs>
+	<g id="startScreen" visibility="visible">
+		<text x="125" y="150" style="font-Size: 75px; fill: red;">ZOMBIE MASSACRE</text>
+		<g id="startButton" onmousedown="showInstructions()">
+			<rect x="350" y="360" width="300" height="80" style="fill: url(#buttonGrad);"></rect>
+			<text x="375" y="410" style="font-Size: 40px; fill: black;">START GAME</text>
+		</g>
+	</g>
+	<g id="instructions" visibility="hidden">
+		<text x="300" y="100" style="font-Size: 50px; fill: red;">INSTRUCTIONS</text>
+		<text x="100" y="150" style="font-Size: 25px; fill: red;">1. Use the WASD keys to move around.</text>
+		<text x="100" y="200" style="font-Size: 25px; fill: red;">2. Avoid incoming zombies.  Do NOT touch them.</text>
+		<text x="100" y="250" style="font-Size: 25px; fill: red;">3. You should also shoot and kill them zombies by clicking on them.</text>
+		<text x="100" y="300" style="font-Size: 25px; fill: red;">4. Some zombies may take more than one hit to kill them.</text>
+		<text x="100" y="350" style="font-Size: 25px; fill: red;">5. In the end there is a BOSS.  Keep shooting it to kill it.  A health bar will show its health.</text>
+		<g id="proceed" onmousedown="init()">
+			<rect x="350" y="570" width="300" height="60" style="fill: url(#buttonGrad);"></rect>
+			<text x="375" y="610" style="font-Size: 20px; fill: black;">I UNDERSTAND, CONTINUE</text>
+		</g>
+	</g>
+	<g id="gameScene" visibility="hidden">
+		<g id="horizontalRoad">
+			<rect x="0" y="350" width="1000" height="100" style="fill: grey;"></rect>
+			<rect x="0" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="150" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="300" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="600" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="750" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="900" y="390" width="100" height="20" style="fill: white;"></rect>
+		</g>
+		<g id="verticalRoad">
+			<rect x="450" y="0" width="100" height="1000" style="fill: grey;"></rect>
+			<rect x="490" y="0" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="150" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="300" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="450" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="600" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="750" width="20" height="100" style="fill: white;"></rect>
+		</g>
+		<g id="player" visibility="hidden">
+			<g id="playerTransform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #ffe9b3; stroke: #ffe9b3;"></circle>
+				<ellipse cx="-15" cy="-20" rx="10" ry="20" style="fill: white; stroke: black;"></ellipse>
+				<ellipse cx="15" cy="-20" rx="10" ry="20" style="fill: white; stroke: black;"></ellipse>
+				<circle cx="-15" cy="-5" r="5" style="fill: black;">
+					<animateTransform attributeName="transform" type="translate" additive="sum" begin="0s" dur="3s" values="0 0; -5 -15; 0 -30; 5 -15; 0 0" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-5" r="5" style="fill: black;">
+					<animateTransform attributeName="transform" type="translate" additive="sum" begin="0s" dur="3s" values="0 0; -5 -15; 0 -30; 5 -15; 0 0" repeatCount="indefinite" />
+				</circle>
+				<path d="M -20 20 L -18 25 L -16 29 L -14 32 L -12 35 L -10 37 L -5 39 L 0 40 L 5 39 L 10 37 L 12 35 L 14 32 L 16 29 L 18 25 L 20 20 z" style="fill: red; stroke: black;"></path>
+			</g>
+		</g>
+		<g id="normalZombie1" visibility="hidden">
+			<g id="normalZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #A7FFA7; stroke: #A7FFA7;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="normalZombie2" visibility="hidden">
+			<g id="normalZombie2Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #A7FFA7; stroke: #A7FFA7;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="normalZombie3" visibility="hidden">
+			<g id="normalZombie3Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #A7FFA7; stroke: #A7FFA7;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="normalZombie4" visibility="hidden">
+			<g id="normalZombie4Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #A7FFA7; stroke: #A7FFA7;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie1" visibility="hidden">
+			<g id="hardZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie2" visibility="hidden">
+			<g id="hardZombie2Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie3" visibility="hidden">
+			<g id="hardZombie3Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie4" visibility="hidden">
+			<g id="hardZombie4Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="minionZombie1" visibility="hidden">
+			<g id="minionZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: yellow; stroke: yellow;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="0 -15 -22.5; 360 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="180 15 -22.5; 540 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="minionZombie2" visibility="hidden">
+			<g id="minionZombie2Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: yellow; stroke: yellow;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="0 -15 -22.5; 360 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="180 15 -22.5; 540 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="bossZombie" visibility="hidden">
+			<g id="bossZombieTransform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="200" style="fill: green; stroke: green;"></circle>
+				<circle cx="-60" cy="-90" r="40" style="fill: red; stroke: black;"></circle>
+				<circle cx="60" cy="-90" r="40" style="fill: red; stroke: black;"></circle>
+				<circle cx="-60" cy="-70" r="20" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="1s" values="0 -60 -90; 360 -60 -90" repeatCount="indefinite" />
+				</circle>
+				<circle cx="60" cy="-70" r="20" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="1s" values="0 60 -90; 360 60 -90" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="100" r="70" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="bossHealthBar" visibility="hidden">
+			<rect x="200" y="50" width="600" height="50" style="stroke: black; opacity: 0.25;"></rect>
+			<rect x="200" y="50" width="600" height="50" style="stroke: black; fill: green;" id="actualBossHealth"></rect>
+		</g>
+	</g>
+	<g id="gameOver" visibility="hidden">
+		<text id="gameOverText" x="200" y="150" style="fill: red; font-Size: 100px;" visibility="hidden">GAME OVER</text>
+		<text id="gameOverWinText" x="250" y="150" style="fill: red; font-Size: 100px;" visibility="hidden">YOU WIN!</text>
+		<g id="gameOverRestart" onmousedown="void(0)">
+			<rect x="350" y="350" width="300" height="100" style="fill: url(#buttonGrad);"></rect>
+			<text x="390" y="420" style="font-Size: 50px; fill: black;">RESTART</text>
+		</g>
+	</g>
+	<html:audio src="assets/background.ogg" id="backgroundMusic" autoplay="autoplay" loop="loop"></html:audio>
+	<html:audio src="assets/button-click.ogg" id="buttonClick"></html:audio>
+	<html:audio src="assets/gunshot.ogg" id="gunshotSFX"></html:audio>
+	<html:audio src="assets/scream.ogg" id="playerScream"></html:audio>
+</svg>
