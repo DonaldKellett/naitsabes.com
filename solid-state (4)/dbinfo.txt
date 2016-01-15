@@ -11,5 +11,6 @@ CREATE TABLE mail (
     email TEXT NOT NULL, # No need for to - the emails are stored in the database
     message TEXT NOT NULL,
     ip TEXT NOT NULL,
+		status TEXT NOT NULL,
     date TIMESTAMP
 );

@@ -28,7 +28,7 @@
           $email = htmlspecialchars(stripslashes(trim($_POST['email'])));
           $message = htmlspecialchars(stripslashes(trim($_POST['message'])));
           if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            if ($main->query("INSERT INTO mail (name, email, message, ip) VALUES (" . htmlspecialchars_decode("&quot;") . $name . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $email . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $message . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $_SERVER['REMOTE_ADDR'] . htmlspecialchars_decode("&quot;") . ")") == true) {
+            if ($main->query("INSERT INTO mail (name, email, message, ip, status) VALUES (" . htmlspecialchars_decode("&quot;") . $name . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $email . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $message . htmlspecialchars_decode("&quot;") . "," . htmlspecialchars_decode("&quot;") . $_SERVER['REMOTE_ADDR'] . htmlspecialchars_decode("&quot;") . ", 'unread')") == true) {
               ?>
               <p style="color:green;">
                 <span class="icon fa fa-check"></span> Thank you.  The message has been sent.
