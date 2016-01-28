@@ -1,0 +1,10 @@
+# The default page / homepage of this Control Panel is the Inbox (inbox.php)
+
+DirectoryIndex inbox.php
+
+# The Control Panel is meant to be a secure area.  Since there is no PHP account verification in the Control Panel, we will do it via the .htaccess file
+
+AuthName "Yourdomain.com - Control Panel"
+AuthType basic
+AuthUserFile /path/to/your/.htpasswd
+Require valid-user
