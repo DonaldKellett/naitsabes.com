@@ -115,7 +115,7 @@ require 'mail_defaults.php';
 											</p>
 										<?php } else { ?>
 											<p style="color:green;">
-												<span class="icon fa-check"></span> Thank you, the recommendation has been sent.  Every little bit helps <span class="icon fa-smiley-o"></span>
+												<span class="icon fa-check"></span> Thank you, the recommendation has been sent.  Every little bit helps <span class="icon fa-smile-o"></span>
 											</p>
 										<?php }
 									} else { ?>
