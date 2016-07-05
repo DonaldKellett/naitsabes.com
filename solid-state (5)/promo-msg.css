@@ -1,0 +1,15 @@
+#promo-msg {
+  background-color: #2d375e;
+  padding: 15px 30px 0px 15px;
+  margin-bottom: 20px;
+  color: #6f86db;
+}
+#promo-msg a {
+  color: #6f86db;
+}
+#promo-msg a:hover {
+  color: #6f86db;
+}
+#promo-msg-close {
+  text-decoration: none !important;
+}
