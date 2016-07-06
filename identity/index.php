@@ -29,14 +29,16 @@ require 'PHPMailer-5.2.16/PHPMailerAutoload.php';
 			<div id="wrapper">
 
 				<!-- Main -->
-					<section id="main" style="width:40%">
+					<section id="main">
 						<header>
 							<!-- <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
-							<marquee title="Latest News" id="latest-news" style="font-family:monospace;background-color:#000000;color:#ff0000;text-transform:none">
-								Test your PHP code locally with no difficulty using <a href="https://github.com/DonaldKellett/PHPTester/releases/latest" target="_blank">PHPTester</a>!
-								Ensure the quality of your software using Test-Driven Development in <a href="http://github.com/DonaldKellett/RubyTester/releases/latest" target="_blank">Ruby</a>, <a href="https://github.com/DonaldKellett/PHPTester/releases/latest" target="_blank">PHP</a> and <a href="https://github.com/DonaldKellett/JSTester/releases/latest" target="_blank">JS</a>!
-								If you are a web developer or computer programmer wanting to polish up your programming skills or are just someone who loves to code, don't forget to join in the fun by <a href="http://www.codewars.com/r/2QXbZQ" target="_blank">creating an account on Codewars</a>!
-							</marquee>
+							<p>
+								<marquee title="Latest News" id="latest-news" style="font-family:monospace;background-color:#000000;color:#ff0000;text-transform:none">
+									Test your PHP code locally with no difficulty using <a href="https://github.com/DonaldKellett/PHPTester/releases/latest" target="_blank">PHPTester</a>!
+									Ensure the quality of your software using Test-Driven Development in <a href="http://github.com/DonaldKellett/RubyTester/releases/latest" target="_blank">Ruby</a>, <a href="https://github.com/DonaldKellett/PHPTester/releases/latest" target="_blank">PHP</a> and <a href="https://github.com/DonaldKellett/JSTester/releases/latest" target="_blank">JS</a>!
+									If you are a web developer or computer programmer wanting to polish up your programming skills or are just someone who loves to code, don't forget to join in the fun by <a href="http://www.codewars.com/r/2QXbZQ" target="_blank">creating an account on Codewars</a>!
+								</marquee>
+							</p>
 							<h1>Donald <span title="'S' for Sebastian">S.</span> Leung</h1>
 							<p>An enthusiastic Web Developer</p>
 						</header>
