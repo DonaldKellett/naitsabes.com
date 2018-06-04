@@ -381,11 +381,12 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					event.preventDefault();
 					var xhttp = new XMLHttpRequest();
 					xhttp.onreadystatechange = function () {
-						if (this.readyState === 4 && this.status === 200)
+						if (this.readyState === 4 && this.status === 200) {
 							document.getElementById("status").innerHTML = this.responseText;
-						window.setTimeout(function () {
-							document.getElementById("status").innerHTML = "";
-						}, 5000);
+							window.setTimeout(function () {
+								document.getElementById("status").innerHTML = "";
+							}, 5000);
+						}
 					};
 					xhttp.open("POST", "assets/php/contact.php", true);
 					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
