@@ -1,5 +1,0 @@
-ErrorDocument 400 http://localhost:8888/local_website/400.php
-ErrorDocument 401 http://localhost:8888/local_website/401.php
-ErrorDocument 403 http://localhost:8888/local_website/403.php
-ErrorDocument 404 http://localhost:8888/local_website/404.php
-ErrorDocument 500 http://localhost:8888/local_website/500.php

@@ -1,2 +1,3 @@
-# naitsabes.com_old_designs
-Previous Designs of my personal Website hosted at http://naitsabes.com
+# naitsabes.com
+
+Official backup copy of my website hosted at http://naitsabes.com through GoDaddy

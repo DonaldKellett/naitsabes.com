@@ -1,1 +1,0 @@
-<?php $special_features_and_pages = '<ul class="actions vertical"><li><a href="feedback_corner/" target="_blank" class="button fit"><span class="icon fa fa-comment"></span> Feedback Corner</a></li></ul>'; echo '<ul class="links"><li><a href="index.php">Home</a></li><li><a href="contact.php">Contact</a></li></ul>' . $special_features_and_pages; ?>
