@@ -43,28 +43,26 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro">
+							<!-- <article id="intro">
 								<h2 class="major">Intro</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-							</article>
+							</article> -->
 
 						<!-- Work -->
-							<article id="work">
+							<!-- <article id="work">
 								<h2 class="major">Work</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
 								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
-							</article>
+							</article> -->
 
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About Me</h2>
-								<p>
-									<a style="border-bottom: medium none" href="https://codewars.com/users/donaldsebleung" target="_blank">
-										<img src="https://www.codewars.com/users/donaldsebleung/badges/micro" style="width: 150px" alt="donaldsebleung on Codewars" />
-									</a>
+								<p id="badge">
+									<!-- My CW badge goes here <3 -->
 								</p>
 								<p>I am currently a Year 2 undergraduate student in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a> under the <a href="https://www.cse.ust.hk/" target="_blank">Department of Computer Science and Engineering</a>.</p>
 								<p>
@@ -107,6 +105,9 @@
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
+								<noscript>
+									<p style="color: red"><span class="icon fa-exclamation-circle"></span> Please enable JavaScript in your browser to use this contact form.</p>
+								</noscript>
 								<p id="status">
 									<!-- Status of Email Request upon clicking "Send Message" -->
 								</p>
@@ -114,11 +115,12 @@
 									<li><a href="https://www.facebook.com/manbehindthescreen01" class="icon fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
 									<li><a href="https://github.com/DonaldKellett" class="icon fa-github" target="_blank"><span class="label">GitHub</span></a></li>
 									<li><a href="https://codewars.com/users/donaldsebleung" class="icon fa-code" target="_blank"><span class="label">Codewars</span></a></li>
+									<li><a href="mailto:i.donaldl@me.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
 							</article>
 
 						<!-- Elements -->
-							<article id="elements">
+							<!-- <article id="elements">
 								<h2 class="major">Elements</h2>
 
 								<section>
@@ -357,7 +359,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 									</form>
 								</section>
 
-							</article>
+							</article> -->
 
 					</div>
 
@@ -376,27 +378,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script type="text/javascript">
-				document.getElementById("submit").onclick = function (event) {
-					event.preventDefault();
-					var xhttp = new XMLHttpRequest();
-					xhttp.onreadystatechange = function () {
-						if (this.readyState === 4 && this.status === 200) {
-							document.getElementById("status").innerHTML = this.responseText;
-							window.setTimeout(function () {
-								document.getElementById("status").innerHTML = "";
-							}, 5000);
-						}
-					};
-					xhttp.open("POST", "assets/php/contact.php", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					xhttp.send(
-						"name=" + encodeURIComponent(document.getElementById("name").value) + "&" +
-						"email=" + encodeURIComponent(document.getElementById("email").value) + "&" +
-						"message=" + encodeURIComponent(document.getElementById("message").value)
-					);
-				};
-			</script>
+			<script src="assets/js/contact.js"></script>
 
 	</body>
 </html>
