@@ -27,7 +27,7 @@
 						<div class="content">
 							<div class="inner">
 								<h1>Donald S. Leung</h1>
-								<p>A <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> student at <a href="https://www.ust.hk" target="_blank">HKUST</a></p>
+								<p>A Year 2 <a href="http://www.cpeg.ust.hk/" target="_blank">Computer Engineering</a> undergraduate at <a href="https://www.ust.hk" target="_blank">HKUST</a></p>
 							</div>
 						</div>
 						<nav>
@@ -64,7 +64,7 @@
 								<p id="badge">
 									<!-- My CW badge goes here <3 -->
 								</p>
-								<p>I am currently a Year 2 undergraduate student in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a> under the <a href="https://www.cse.ust.hk/" target="_blank">Department of Computer Science and Engineering</a>.</p>
+								<p>I am currently a Year 2 undergraduate student in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a> under the <a href="http://www.cpeg.ust.hk/" target="_blank">Computer Engineering</a> program.</p>
 								<p>
 									I was deeply fascinated with computers from a young age, mainly at their ability to perform everyday tasks such as sending a message or calculating the result of a mathematical expression in the blink of an eye.
 									This motivated me to try to learn programming at a young age - I bought an introductory book called <a href="http://ineasysteps.com/products-page/all_books/c-programming-in-easy-steps-4th-edition/" target="_blank">"C++ Programming in Easy Steps (4th Edition)" by Mike McGrath</a> when I was about 12.
