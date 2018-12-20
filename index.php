@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Donald S. Leung - A Computer Science and Engineering student at HKUST</title>
+		<title>Donald S. Leung - A Computer Science and Engineering undergradute at The Hong Kong University of Science and Technology</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -22,12 +22,12 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span class="fas fa-microchip fa-lg"></span>
+							<span class="fas fa-laptop fa-lg"></span>
 						</div>
 						<div class="content">
 							<div class="inner">
 								<h1>Donald S. Leung</h1>
-								<p>A Year 2 <a href="http://www.cpeg.ust.hk/" target="_blank">Computer Engineering</a> undergraduate at <a href="https://www.ust.hk" target="_blank">HKUST</a></p>
+								<p>A Year 2 <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> undergraduate at <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a></p>
 							</div>
 						</div>
 						<nav>
@@ -64,24 +64,11 @@
 								<p id="badge">
 									<!-- My CW badge goes here <3 -->
 								</p>
-								<p>I am currently a Year 2 undergraduate student in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a> under the <a href="http://www.cpeg.ust.hk/" target="_blank">Computer Engineering</a> program.</p>
-								<p>
-									I was deeply fascinated with computers from a young age, mainly at their ability to perform everyday tasks such as sending a message or calculating the result of a mathematical expression in the blink of an eye.
-									This motivated me to try to learn programming at a young age - I bought an introductory book called <a href="http://ineasysteps.com/products-page/all_books/c-programming-in-easy-steps-4th-edition/" target="_blank">"C++ Programming in Easy Steps (4th Edition)" by Mike McGrath</a> when I was about 12.
-									Unfortunately I was not able to make any progress back then because I couldn't even get the <span title="A program that allows the computer to understand C++">compiler</span> properly installed on my Windows desktop.
-									Nevertheless, compulsory IT courses offered in <a href="http://www.css.edu.hk" target="_blank">CSS</a> during the first two years of my secondary education allowed me to learn simple programming-related concepts through the visual <span title="Ermmm ... this is debatable ... ;)">programming language</span> <a href="https://scratch.mit.edu" target="_blank">Scratch</a>.
-								</p>
-								<p>
-									My major breakthrough occurred when I joined an extra-curricular activity called "Web and App Development" provided by <a href="https://hk.bsdacademy.com" target="_blank">BSD Academy</a> in <a href="https://www.kellettschool.com" target="_blank">Kellett School</a> when I was in Year 10.
-									Through that 12-hour course (2 hours per session spread through 6 weeks), I learned how to design simple websites using the core Web technologies, namely HTML, CSS and <span title="Client-side JS, i.e. JS code that runs directly in your browser">JS</span>.
-									This rekindled my interest in computer programming and I spent a lot of my spare time designing simple web pages and widgets as a result.
-								</p>
-								<p>
-									After freestyling for about a year in writing simple webpages and games using HTML+CSS+JS, I stumbled upon <a href="http://www.codewars.com/r/2QXbZQ" target="_blank">Codewars</a> which is a site for programmers/developers of all types and abilities to train on their programming skills and become a better programmer.
-									I was immediately in love with it and became addicted to solving challenge upon challenge on that website.
-									As a direct result, my programming and problem-solving skills skyrocketed to what it is today.
-									My focus has also gradually shifted from web design to more generic problem-solving through writing programs and designing simple algorithms; however, I still specialize in Web Development - if you want a simple personal/commercial website designed, feel free to <a href="#contact">contact me</a> through my contact form ;)
-								</p>
+								<p>I am currently a Year 2 <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> major in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a>.</p>
+								<p>I started out as a Web Developer near the end of Year 10 in <a href="https://www.kellettschool.com" target="_blank">Kellett School BISHK</a> having taken a 12-hour course provided by <a href="https://bsd.education" target="_blank">BSD Education</a> (formerly known as BSD Academy) on HTML5, CSS3 and JavaScript (popular web technologies).  Since then, I fell in love with coding and developed countless toy projects and browser mini-games as well as designing simple websites both for my clients and myself which can be found on <a href="https://github.com/DonaldKellett" target="_blank">GitHub</a>.  I also expanded my knowledge on Web Development, and later, general programming by surfing the Internet and training on <a href="https://www.codewars.com/" target="_blank">Codewars</a> kata.  Coupled with my strong mathematical background, it soon became clear to me that Computer Science was the perfect major.</p>
+								<p>After my admission in <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a> as an Engineering major, I continued to hone in on my programming skills by taking an introductory Java programming course, as well as exploring various other programming languages such as Haskell in my spare time.  I was admitted into the <a href="http://cpeg.ust.hk/cgi-bin/eng/index.php" target="_blank">Computer Engineering</a> program as a result by the end of my first year, which was <em>nearly</em> what I wanted.</p>
+								<p>In order to enter my dream major, I went the extra mile and took a few core Computer Science courses in the first half of my second academic year, including an accelerated, intensive course on C++ programming and a discrete mathematics course fundamental to many Computer Science courses later on.  Consequently, I was officially admitted to the <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> department by the end of this academic term.</p>
+								<p>My current interests in the field of Computer Science are functional programming, logic-based programming and computer-assisted proofs which are deeply tied to the field of mathematics and philosophy.  I aspire to specialize in Theoretical Computer Science by the end of my 4-year degree.</p>
 							</article>
 
 						<!-- Contact -->
