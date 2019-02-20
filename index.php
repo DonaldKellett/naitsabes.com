@@ -99,7 +99,6 @@
 									<!-- Status of Email Request upon clicking "Send Message" -->
 								</p>
 								<ul class="icons">
-									<li><a href="https://www.facebook.com/manbehindthescreen01" class="icon fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
 									<li><a href="https://github.com/DonaldKellett" class="icon fa-github" target="_blank"><span class="label">GitHub</span></a></li>
 									<li><a href="https://gitlab.com/DonaldKellett" class="icon fa-gitlab" target="_blank"><span class="label">GitLab</span></a></li>
 									<li><a href="https://codewars.com/users/donaldsebleung" class="icon fa-code" target="_blank"><span class="label">Codewars</span></a></li>
