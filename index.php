@@ -27,7 +27,7 @@
 						<div class="content">
 							<div class="inner">
 								<h1>Donald S. Leung</h1>
-								<p>A Year 2 <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> undergraduate at <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a></p>
+								<p>A Year 3 <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> undergraduate at <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a></p>
 							</div>
 						</div>
 						<nav>
@@ -64,11 +64,8 @@
 								<p id="badge">
 									<!-- My CW badge goes here <3 -->
 								</p>
-								<p>I am currently a Year 2 <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> major in <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a>.</p>
-								<p>I started out as a Web Developer near the end of Year 10 in <a href="https://www.kellettschool.com" target="_blank">Kellett School BISHK</a> having taken a 12-hour course provided by <a href="https://bsd.education" target="_blank">BSD Education</a> (formerly known as BSD Academy) on HTML5, CSS3 and JavaScript (popular web technologies).  Since then, I fell in love with coding and developed countless toy projects and browser mini-games as well as designing simple websites both for my clients and myself which can be found on <a href="https://github.com/DonaldKellett" target="_blank">GitHub</a>.  I also expanded my knowledge on Web Development, and later, general programming by surfing the Internet and training on <a href="https://www.codewars.com/" target="_blank">Codewars</a> kata.  Coupled with my strong mathematical background, it soon became clear to me that Computer Science was the perfect major.</p>
-								<p>After my admission in <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a> as an Engineering major, I continued to hone in on my programming skills by taking an introductory Java programming course, as well as exploring various other programming languages such as Haskell in my spare time.  I was admitted into the <a href="http://cpeg.ust.hk/cgi-bin/eng/index.php" target="_blank">Computer Engineering</a> program as a result by the end of my first year, which was <em>nearly</em> what I wanted.</p>
-								<p>In order to enter my dream major, I went the extra mile and took a few core Computer Science courses in the first half of my second academic year, including an accelerated, intensive course on C++ programming and a discrete mathematics course fundamental to many Computer Science courses later on.  Consequently, I was officially admitted to the <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a> department by the end of this academic term.</p>
-								<p>My current interests in the field of Computer Science are functional programming, logic-based programming and computer-assisted proofs which are deeply tied to the field of mathematics and philosophy.  I aspire to specialize in Theoretical Computer Science by the end of my 4-year degree.</p>
+								<p>Having discovered my passion for coding thanks to <a href="https://bsd.education" target="_blank">BSD Education</a> (formerly known as BSD Academy), I am now a Year 3 undergraduate at <a href="https://www.ust.hk" target="_blank">The Hong Kong University of Science and Technology</a> majoring in <a href="https://www.cse.ust.hk" target="_blank">Computer Science and Engineering</a>. My current interests are in the fields of functional programming and the formalization of various theories in mathematics and computer science using the <a href="https://coq.inria.fr" target="_blank">Coq proof assistant</a>.</p>
+								<p>I am currently most active on both <a href="https://github.com/DonaldKellett" target="_blank">GitHub</a> and <a href="https://codewars.com/users/donaldsebleung" target="_blank">Codewars</a>. You can also find my other online profiles through the &quot;Contact&quot; section of this website. If you want to leave me a private message, feel free to use the contact form in the &quot;Contact&quot; section of this website or send an email directly to i dot donaldl at me dot com.</p>
 							</article>
 
 						<!-- Contact -->
