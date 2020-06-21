@@ -27,12 +27,12 @@ elseif (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["message
   $mail = new PHPMailer;
   $mail->setFrom($_POST["email"], $_POST["name"]);
   $mail->addReplyTo($_POST["email"], $_POST["name"]);
-  $mail->addAddress("i.donaldl@me.com");
+  $mail->addAddress("donaldsebleung@gmail.com");
   $mail->Subject = "Private Message from {$_POST["name"]}";
   $mail->Body = "{$_POST["message"]}\n\n- Sent from http://naitsabes.com";
   echo $mail->send() ?
     "<span style=\"color: green\"><span class=\"icon fa-check-circle\"></span> The message was sent successfully.</span>" :
-    "<span style=\"color: red\"><span class=\"icon fa-exclamation-circle\"></span> The message could not be sent due to an unknown error.  If this persists, please consider sending an email directly to <a href=\"mailto:i.donaldl@me.com\">i.donaldl@me.com</a>.  Don't forget to notify me of this error as well ;)</span>";
+    "<span style=\"color: red\"><span class=\"icon fa-exclamation-circle\"></span> The message could not be sent due to an unknown error.  If this persists, please consider sending an email directly to <a href=\"mailto:donaldsebleung@gmail.com\">donaldsebleung@gmail.com</a>.  Don't forget to notify me of this error as well ;)</span>";
 }
 
 ?>

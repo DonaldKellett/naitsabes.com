@@ -68,7 +68,7 @@
 									Having discovered my passion for coding thanks to <a href="https://bsd.education/" target="_blank">BSD Education</a> (formerly known as BSD Academy), I am now a Year 4 undergraduate at <a href="https://www.ust.hk/" target="_blank">The Hong Kong University of Science and Technology</a> majoring in <a href="https://www.cse.ust.hk/" target="_blank">Computer Science and Engineering</a>.
 									My current interests are in the fields of <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank">functional programming</a> and <a href="https://en.wikipedia.org/wiki/Formal_verification" target="_blank">formal verification</a>.
 								</p>
-								<p>I am currently most active on both <a href="https://github.com/DonaldKellett/" target="_blank">GitHub</a> and <a href="https://codewars.com/users/donaldsebleung/" target="_blank">Codewars</a>. You can also find my other online profiles through the &quot;Contact&quot; section of this website. If you want to leave me a private message, feel free to use the contact form in the &quot;Contact&quot; section of this website or send an email directly to i dot donaldl at me dot com.</p>
+								<p>I am currently most active on both <a href="https://github.com/DonaldKellett/" target="_blank">GitHub</a> and <a href="https://codewars.com/users/donaldsebleung/" target="_blank">Codewars</a>. You can also find my other online profiles through the &quot;Contact&quot; section of this website. If you want to leave me a private message, feel free to use the contact form in the &quot;Contact&quot; section of this website or send an email directly to donaldsebleung at gmail dot com.</p>
 							</article>
 
 						<!-- Contact -->
@@ -102,9 +102,9 @@
 									<li><a href="https://github.com/DonaldKellett/" class="icon fa-github" target="_blank"><span class="label">GitHub</span></a></li>
 									<li><a href="https://gitlab.com/DonaldKellett/" class="icon fa-gitlab" target="_blank"><span class="label">GitLab</span></a></li>
 									<li><a href="https://codewars.com/users/donaldsebleung/" class="icon fa-code" target="_blank"><span class="label">Codewars</span></a></li>
-									<li><a href="https://hackerrank.com/i_donaldl/" class="icon fa-terminal" target="_blank"><span class="label">HackerRank</span></a></li>
+									<li><a href="https://hackerrank.com/donaldsebleung/" class="icon fa-terminal" target="_blank"><span class="label">HackerRank</span></a></li>
 									<li><a href="https://www.linkedin.com/in/dsleung/" class="icon fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
-									<li><a href="mailto:i.donaldl@me.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+									<li><a href="mailto:donaldsebleung@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
 							</article>
 
